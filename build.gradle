@@ -1,8 +1,8 @@
 /*
     ./gradlew clean executableCapsule
+    rm fregebuild/*
     build/libs/fregec-1.0-SNAPSHOT-capsule.jar -d fregebuild helloworld.fr
     ll fregebuild
-    
 */
 
 buildscript {
@@ -20,12 +20,9 @@ plugins {
 
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: 'java'
-apply plugin: 'application'
 
 group = 'org.svenehrke.TTT'
 version = '1.0-SNAPSHOT'
-
-mainClassName = 'frege.compiler.Main'
 
 repositories {
     jcenter()
@@ -42,43 +39,25 @@ task executableCapsule(type:FatCapsule){
     script file('xjar_script.sh')
   }
 }
-configurations {
-	fregec
+
+task bin(type: Copy, dependsOn: executableCapsule) {
+    from executableCapsule.outputs
+    into 'build/bin'
+    rename 'fregec.*jar', 'fregec'
 }
+
 dependencies {
 	compile files('0_localrepository/frege3.21.586-g026e8d7.jar')
-	fregec files('0_localrepository/frege3.21.586-g026e8d7.jar')
 	testCompile 'junit:junit:4.11'
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
 // java -Xss1m -jar build/libs/fregec-1.0-SNAPSHOT-capsule.jar -d fregebuild helloworld.fr
 // java -Xss1m -jar fregec.jar -d build test.fr
-task fregec(type: JavaExec) {
-    classpath configurations.fregec
-    main = "frege.compiler.Main"
-    jvmArgs = ['-Xss1m']
-    args "-d", 'build', 'helloworld.fr'
-}
 
 //java -classpath 0_localrepository/frege3.21.586-g026e8d7.jar:fregebuild Main
+/*
 task frege(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath + files('build')
     main = "Main"
 }
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
-sourceCompatibility = 1.7
-//targetCompatibility = 1.7
+*/
