@@ -1,0 +1,30 @@
+= frege tools
+
+== Build
+
+[source,groovy]
+----
+./gradlew clean bin
+----
+
+* Copy +build/bin/fregec+ somewhere your PATH points to
+
+== Trying:
+
+* mkdir play
+* cd play
+* +mkdir build+
+
+* Create file:
+[source,frege]
+.helloworld.fr
+----
+module Main where
+main _ = println "Hello World!"
+----
+
+* rm build/*
+* fregec -d build helloworld.fr
+ll build
+java -classpath 0_localrepository/frege3.21.586-g026e8d7.jar:fregebuild Main
+
