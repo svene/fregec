@@ -15,9 +15,9 @@
 * cd hellofrege
 * +mkdir fregebuild+
 
-* Create file:
+* Create file +helloworld.fr+:
+
 [source,frege]
-.helloworld.fr
 ----
 module Main where
 main _ = println "Hello World!"
