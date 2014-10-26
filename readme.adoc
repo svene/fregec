@@ -1,4 +1,4 @@
-= frege tools
+= fregec
 
 == Build
 
