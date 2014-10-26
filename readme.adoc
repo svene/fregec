@@ -28,8 +28,8 @@ main _ = println "Hello World!"
 +fregec -d fregebuild helloworld.fr+
 
 * Run compiled frege program
-** +cd fregebuild+
-** +java -classpath PATH_TO_FREGE_JAR:fregebuild Main+
+
++java -classpath PATH_TO_FREGE_JAR:fregebuild Main+
 
 
 
