@@ -23,11 +23,13 @@ module Main where
 main _ = println "Hello World!"
 ----
 
-=== Compile with +fregec+
-* fregec -d fregebuild helloworld.fr
+* Compile with fregec
 
-=== Run compiled frege program
-* +cd fregebuild+
-java -classpath PATH_TO_FREGE_JAR:fregebuild Main
++fregec -d fregebuild helloworld.fr+
+
+* Run compiled frege program
+** +cd fregebuild+
+** +java -classpath PATH_TO_FREGE_JAR:fregebuild Main+
+
 
 
